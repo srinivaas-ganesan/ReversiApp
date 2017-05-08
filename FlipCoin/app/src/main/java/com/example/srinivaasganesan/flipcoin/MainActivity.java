@@ -116,19 +116,6 @@ public class MainActivity extends AppCompatActivity {
         validMoves.add("66");
     }
 
-    protected void reFlip(View V){
-        color = 1 - color;
-
-        Log.e("FLIP","Inside ReFLIP");
-        for(int i=1; i<=8; i++){
-            StringBuilder sb = new StringBuilder("A");
-            String temp = sb.append(i).toString();
-
-            int resID = getResources().getIdentifier(temp, "id", getPackageName());
-            flip(findViewById(resID), color);
-        }
-    }
-
     //FLIP A CELL
     protected void flip(View V, int color){
         Log.e("FLIP","Inside FLIP 1");
@@ -194,16 +181,6 @@ public class MainActivity extends AppCompatActivity {
             for(int i=0; i<3; i++)
                 for(int j=0; j<3; j++)
                     num_cells += check_range(x_var, y_var, x_val[i] , y_val[j], user_color, true);
-
-            /*check_range(x_var, y_var, 0 , 1, user_color);  //RIGHT
-            check_range(x_var, y_var, 0 , -1, user_color); //LEFT
-            check_range(x_var, y_var, -1 , 0, user_color); //TOP
-            check_range(x_var, y_var, 1 , 0, user_color);  //BOTTOM
-
-            check_range(x_var, y_var, 1 , 1, user_color); //BOTTOM_RIGHT
-            check_range(x_var, y_var, -1 , -1, user_color); //TOP_LEFT
-            check_range(x_var, y_var, 1 , -1, user_color); //TOP_RIGHT
-            check_range(x_var, y_var, -1 , 1, user_color); //BOTTOM_LEFT*/
 
             if(valid_click == false) {
                 user_turn = true;
