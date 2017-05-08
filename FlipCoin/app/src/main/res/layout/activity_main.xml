@@ -1,0 +1,1508 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.srinivaasganesan.flipcoin.MainActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight = "1"
+    />
+
+    <!--ROW A ODD ROW OF CELLS-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <!--A1-->
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_weight="1">
+
+        <include android:id="@+id/A1_tile"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_alignBottom="@+id/A1"
+            android:layout_alignTop="@+id/A1"
+            android:layout_alignLeft="@+id/A1"
+            android:layout_alignRight="@+id/A1"
+            layout="@layout/tile_light" />
+
+        <include android:id="@+id/A1"
+                android:name = "A1"
+                android:onClick = "reFlip"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+    </RelativeLayout>
+
+        <!--A2-->
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_weight="1">
+
+    <include android:id="@+id/A2_tile"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_alignBottom="@+id/A2"
+            android:layout_alignTop="@+id/A2"
+            android:layout_alignLeft="@+id/A2"
+            android:layout_alignRight="@+id/A2"
+            layout="@layout/tile_dark" />
+
+        <include android:id="@+id/A2"
+            android:name = "A2"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            layout="@layout/coin" />
+    </RelativeLayout>
+
+        <!--A3-->
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_weight="1">
+
+        <include android:id="@+id/A3_tile"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_alignBottom="@+id/A3"
+            android:layout_alignTop="@+id/A3"
+            android:layout_alignLeft="@+id/A3"
+            android:layout_alignRight="@+id/A3"
+            layout="@layout/tile_light" />
+
+        <include android:id="@+id/A3"
+            android:name = "A3"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            layout="@layout/coin" />
+    </RelativeLayout>
+
+        <!--A4-->
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_weight="1">
+
+        <include android:id="@+id/A4_tile"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_alignBottom="@+id/A4"
+            android:layout_alignTop="@+id/A4"
+            android:layout_alignLeft="@+id/A4"
+            android:layout_alignRight="@+id/A4"
+            layout="@layout/tile_dark" />
+
+        <include android:id="@+id/A4"
+            android:name = "A4"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            layout="@layout/coin" />
+    </RelativeLayout>
+
+        <!--A5-->
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_weight="1">
+
+        <include android:id="@+id/A5_tile"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_alignBottom="@+id/A5"
+            android:layout_alignTop="@+id/A5"
+            android:layout_alignLeft="@+id/A5"
+            android:layout_alignRight="@+id/A5"
+            layout="@layout/tile_light" />
+
+        <include android:id="@+id/A5"
+            android:name = "A5"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            layout="@layout/coin" />
+    </RelativeLayout>
+
+        <!--A6-->
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_weight="1">
+
+        <include android:id="@+id/A6_tile"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_alignBottom="@+id/A6"
+            android:layout_alignTop="@+id/A6"
+            android:layout_alignLeft="@+id/A6"
+            android:layout_alignRight="@+id/A6"
+            layout="@layout/tile_dark" />
+
+        <include android:id="@+id/A6"
+            android:name = "A6"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            layout="@layout/coin" />
+    </RelativeLayout>
+
+        <!--A7-->
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_weight="1">
+
+        <include android:id="@+id/A7_tile"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_alignBottom="@+id/A7"
+            android:layout_alignTop="@+id/A7"
+            android:layout_alignLeft="@+id/A7"
+            android:layout_alignRight="@+id/A7"
+            layout="@layout/tile_light" />
+
+        <include android:id="@+id/A7"
+            android:name = "A7"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            layout="@layout/coin" />
+    </RelativeLayout>
+
+        <!--A8-->
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_weight="1">
+
+        <include android:id="@+id/A8_tile"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_alignBottom="@+id/A8"
+            android:layout_alignTop="@+id/A8"
+            android:layout_alignLeft="@+id/A8"
+            android:layout_alignRight="@+id/A8"
+            layout="@layout/tile_dark" />
+
+        <include android:id="@+id/A8"
+            android:name = "A8"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            layout="@layout/coin" />
+    </RelativeLayout>
+
+    </LinearLayout>
+
+    <!--ROW B EVEN ROW OF CELLS-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <!--B1-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/B1_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/B1"
+                android:layout_alignTop="@+id/B1"
+                android:layout_alignLeft="@+id/B1"
+                android:layout_alignRight="@+id/B1"
+                layout="@layout/tile_dark" />
+
+            <include android:id="@+id/B1"
+                android:name = "B1"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--B2-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/B2_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/B2"
+                android:layout_alignTop="@+id/B2"
+                android:layout_alignLeft="@+id/B2"
+                android:layout_alignRight="@+id/B2"
+                layout="@layout/tile_light" />
+
+            <include android:id="@+id/B2"
+                android:name = "B2"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--B3-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/B3_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/B3"
+                android:layout_alignTop="@+id/B3"
+                android:layout_alignLeft="@+id/B3"
+                android:layout_alignRight="@+id/B3"
+                layout="@layout/tile_dark" />
+
+            <include android:id="@+id/B3"
+                android:name = "B3"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--B4-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/B4_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/B4"
+                android:layout_alignTop="@+id/B4"
+                android:layout_alignLeft="@+id/B4"
+                android:layout_alignRight="@+id/B4"
+                layout="@layout/tile_light" />
+
+            <include android:id="@+id/B4"
+                android:name = "B4"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--B5-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/B5_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/B5"
+                android:layout_alignTop="@+id/B5"
+                android:layout_alignLeft="@+id/B5"
+                android:layout_alignRight="@+id/B5"
+                layout="@layout/tile_dark" />
+
+            <include android:id="@+id/B5"
+                android:name = "B5"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--B6-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/B6_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/B6"
+                android:layout_alignTop="@+id/B6"
+                android:layout_alignLeft="@+id/B6"
+                android:layout_alignRight="@+id/B6"
+                layout="@layout/tile_light" />
+
+            <include android:id="@+id/B6"
+                android:name = "B6"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--B7-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/B7_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/B7"
+                android:layout_alignTop="@+id/B7"
+                android:layout_alignLeft="@+id/B7"
+                android:layout_alignRight="@+id/B7"
+                layout="@layout/tile_dark" />
+
+            <include android:id="@+id/B7"
+                android:name = "B7"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--B8-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/B8_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/B8"
+                android:layout_alignTop="@+id/B8"
+                android:layout_alignLeft="@+id/B8"
+                android:layout_alignRight="@+id/B8"
+                layout="@layout/tile_light" />
+
+            <include android:id="@+id/B8"
+                android:name = "B8"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <!--ROW C ODD ROW OF CELLS-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <!--C1-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/C1_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/C1"
+                android:layout_alignTop="@+id/C1"
+                android:layout_alignLeft="@+id/C1"
+                android:layout_alignRight="@+id/C1"
+                layout="@layout/tile_light" />
+
+            <include android:id="@+id/C1"
+                android:name = "C1"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--C2-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/C2_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/C2"
+                android:layout_alignTop="@+id/C2"
+                android:layout_alignLeft="@+id/C2"
+                android:layout_alignRight="@+id/C2"
+                layout="@layout/tile_dark" />
+
+            <include android:id="@+id/C2"
+                android:name = "C2"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--C3-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/C3_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/C3"
+                android:layout_alignTop="@+id/C3"
+                android:layout_alignLeft="@+id/C3"
+                android:layout_alignRight="@+id/C3"
+                layout="@layout/tile_light" />
+
+            <include android:id="@+id/C3"
+                android:name = "C3"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--C4-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/C4_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/C4"
+                android:layout_alignTop="@+id/C4"
+                android:layout_alignLeft="@+id/C4"
+                android:layout_alignRight="@+id/C4"
+                layout="@layout/tile_dark" />
+
+            <include android:id="@+id/C4"
+                android:name = "C4"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--C5-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/C5_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/C5"
+                android:layout_alignTop="@+id/C5"
+                android:layout_alignLeft="@+id/C5"
+                android:layout_alignRight="@+id/C5"
+                layout="@layout/tile_light" />
+
+            <include android:id="@+id/C5"
+                android:name = "C5"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--C6-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/C6_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/C6"
+                android:layout_alignTop="@+id/C6"
+                android:layout_alignLeft="@+id/C6"
+                android:layout_alignRight="@+id/C6"
+                layout="@layout/tile_dark" />
+
+            <include android:id="@+id/C6"
+                android:name = "C6"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--C7-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/C7_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/C7"
+                android:layout_alignTop="@+id/C7"
+                android:layout_alignLeft="@+id/C7"
+                android:layout_alignRight="@+id/C7"
+                layout="@layout/tile_light" />
+
+            <include android:id="@+id/C7"
+                android:name = "C7"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--C8-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/C8_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/C8"
+                android:layout_alignTop="@+id/C8"
+                android:layout_alignLeft="@+id/C8"
+                android:layout_alignRight="@+id/C8"
+                layout="@layout/tile_dark" />
+
+            <include android:id="@+id/C8"
+                android:name = "C8"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <!--ROW D EVEN ROW OF CELLS-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <!--D1-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/D1_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/D1"
+                android:layout_alignTop="@+id/D1"
+                android:layout_alignLeft="@+id/D1"
+                android:layout_alignRight="@+id/D1"
+                layout="@layout/tile_dark" />
+
+            <include android:id="@+id/D1"
+                android:name = "B1"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--D2-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/D2_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/D2"
+                android:layout_alignTop="@+id/D2"
+                android:layout_alignLeft="@+id/D2"
+                android:layout_alignRight="@+id/D2"
+                layout="@layout/tile_light" />
+
+            <include android:id="@+id/D2"
+                android:name = "B2"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--D3-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/D3_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/D3"
+                android:layout_alignTop="@+id/D3"
+                android:layout_alignLeft="@+id/D3"
+                android:layout_alignRight="@+id/D3"
+                layout="@layout/tile_dark" />
+
+            <include android:id="@+id/D3"
+                android:name = "B3"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--D4-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/D4_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/D4"
+                android:layout_alignTop="@+id/D4"
+                android:layout_alignLeft="@+id/D4"
+                android:layout_alignRight="@+id/D4"
+                layout="@layout/tile_light" />
+
+            <include android:id="@+id/D4"
+                android:name = "B4"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--D5-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/D5_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/D5"
+                android:layout_alignTop="@+id/D5"
+                android:layout_alignLeft="@+id/D5"
+                android:layout_alignRight="@+id/D5"
+                layout="@layout/tile_dark" />
+
+            <include android:id="@+id/D5"
+                android:name = "B5"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--D6-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/D6_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/D6"
+                android:layout_alignTop="@+id/D6"
+                android:layout_alignLeft="@+id/D6"
+                android:layout_alignRight="@+id/D6"
+                layout="@layout/tile_light" />
+
+            <include android:id="@+id/D6"
+                android:name = "B6"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--D7-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/D7_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/D7"
+                android:layout_alignTop="@+id/D7"
+                android:layout_alignLeft="@+id/D7"
+                android:layout_alignRight="@+id/D7"
+                layout="@layout/tile_dark" />
+
+            <include android:id="@+id/D7"
+                android:name = "B7"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--D8-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/D8_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/D8"
+                android:layout_alignTop="@+id/D8"
+                android:layout_alignLeft="@+id/D8"
+                android:layout_alignRight="@+id/D8"
+                layout="@layout/tile_light" />
+
+            <include android:id="@+id/D8"
+                android:name = "B8"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <!--ROW E ODD ROW OF CELLS-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <!--E1-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/E1_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/E1"
+                android:layout_alignTop="@+id/E1"
+                android:layout_alignLeft="@+id/E1"
+                android:layout_alignRight="@+id/E1"
+                layout="@layout/tile_light" />
+
+            <include android:id="@+id/E1"
+                android:name = "C1"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--E2-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/E2_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/E2"
+                android:layout_alignTop="@+id/E2"
+                android:layout_alignLeft="@+id/E2"
+                android:layout_alignRight="@+id/E2"
+                layout="@layout/tile_dark" />
+
+            <include android:id="@+id/E2"
+                android:name = "C2"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--E3-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/E3_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/E3"
+                android:layout_alignTop="@+id/E3"
+                android:layout_alignLeft="@+id/E3"
+                android:layout_alignRight="@+id/E3"
+                layout="@layout/tile_light" />
+
+            <include android:id="@+id/E3"
+                android:name = "C3"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--E4-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/E4_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/E4"
+                android:layout_alignTop="@+id/E4"
+                android:layout_alignLeft="@+id/E4"
+                android:layout_alignRight="@+id/E4"
+                layout="@layout/tile_dark" />
+
+            <include android:id="@+id/E4"
+                android:name = "C4"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--E5-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/E5_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/E5"
+                android:layout_alignTop="@+id/E5"
+                android:layout_alignLeft="@+id/E5"
+                android:layout_alignRight="@+id/E5"
+                layout="@layout/tile_light" />
+
+            <include android:id="@+id/E5"
+                android:name = "C5"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--E6-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/E6_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/E6"
+                android:layout_alignTop="@+id/E6"
+                android:layout_alignLeft="@+id/E6"
+                android:layout_alignRight="@+id/E6"
+                layout="@layout/tile_dark" />
+
+            <include android:id="@+id/E6"
+                android:name = "C6"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--E7-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/E7_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/E7"
+                android:layout_alignTop="@+id/E7"
+                android:layout_alignLeft="@+id/E7"
+                android:layout_alignRight="@+id/E7"
+                layout="@layout/tile_light" />
+
+            <include android:id="@+id/E7"
+                android:name = "C7"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--E8-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/E8_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/E8"
+                android:layout_alignTop="@+id/E8"
+                android:layout_alignLeft="@+id/E8"
+                android:layout_alignRight="@+id/E8"
+                layout="@layout/tile_dark" />
+
+            <include android:id="@+id/E8"
+                android:name = "C8"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <!--ROW F EVEN ROW OF CELLS-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <!--F1-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/F1_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/F1"
+                android:layout_alignTop="@+id/F1"
+                android:layout_alignLeft="@+id/F1"
+                android:layout_alignRight="@+id/F1"
+                layout="@layout/tile_dark" />
+
+            <include android:id="@+id/F1"
+                android:name = "B1"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--F2-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/F2_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/F2"
+                android:layout_alignTop="@+id/F2"
+                android:layout_alignLeft="@+id/F2"
+                android:layout_alignRight="@+id/F2"
+                layout="@layout/tile_light" />
+
+            <include android:id="@+id/F2"
+                android:name = "B2"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--F3-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/F3_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/F3"
+                android:layout_alignTop="@+id/F3"
+                android:layout_alignLeft="@+id/F3"
+                android:layout_alignRight="@+id/F3"
+                layout="@layout/tile_dark" />
+
+            <include android:id="@+id/F3"
+                android:name = "B3"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--F4-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/F4_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/F4"
+                android:layout_alignTop="@+id/F4"
+                android:layout_alignLeft="@+id/F4"
+                android:layout_alignRight="@+id/F4"
+                layout="@layout/tile_light" />
+
+            <include android:id="@+id/F4"
+                android:name = "B4"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--F5-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/F5_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/F5"
+                android:layout_alignTop="@+id/F5"
+                android:layout_alignLeft="@+id/F5"
+                android:layout_alignRight="@+id/F5"
+                layout="@layout/tile_dark" />
+
+            <include android:id="@+id/F5"
+                android:name = "B5"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--F6-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/F6_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/F6"
+                android:layout_alignTop="@+id/F6"
+                android:layout_alignLeft="@+id/F6"
+                android:layout_alignRight="@+id/F6"
+                layout="@layout/tile_light" />
+
+            <include android:id="@+id/F6"
+                android:name = "B6"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--F7-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/F7_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/F7"
+                android:layout_alignTop="@+id/F7"
+                android:layout_alignLeft="@+id/F7"
+                android:layout_alignRight="@+id/F7"
+                layout="@layout/tile_dark" />
+
+            <include android:id="@+id/F7"
+                android:name = "B7"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--F8-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/F8_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/F8"
+                android:layout_alignTop="@+id/F8"
+                android:layout_alignLeft="@+id/F8"
+                android:layout_alignRight="@+id/F8"
+                layout="@layout/tile_light" />
+
+            <include android:id="@+id/F8"
+                android:name = "B8"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <!--ROW G ODD ROW OF CELLS-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <!--G1-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/G1_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/G1"
+                android:layout_alignTop="@+id/G1"
+                android:layout_alignLeft="@+id/G1"
+                android:layout_alignRight="@+id/G1"
+                layout="@layout/tile_light" />
+
+            <include android:id="@+id/G1"
+                android:name = "C1"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--G2-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/G2_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/G2"
+                android:layout_alignTop="@+id/G2"
+                android:layout_alignLeft="@+id/G2"
+                android:layout_alignRight="@+id/G2"
+                layout="@layout/tile_dark" />
+
+            <include android:id="@+id/G2"
+                android:name = "C2"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--G3-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/G3_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/G3"
+                android:layout_alignTop="@+id/G3"
+                android:layout_alignLeft="@+id/G3"
+                android:layout_alignRight="@+id/G3"
+                layout="@layout/tile_light" />
+
+            <include android:id="@+id/G3"
+                android:name = "C3"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--G4-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/G4_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/G4"
+                android:layout_alignTop="@+id/G4"
+                android:layout_alignLeft="@+id/G4"
+                android:layout_alignRight="@+id/G4"
+                layout="@layout/tile_dark" />
+
+            <include android:id="@+id/G4"
+                android:name = "C4"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--G5-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/G5_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/G5"
+                android:layout_alignTop="@+id/G5"
+                android:layout_alignLeft="@+id/G5"
+                android:layout_alignRight="@+id/G5"
+                layout="@layout/tile_light" />
+
+            <include android:id="@+id/G5"
+                android:name = "C5"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--G6-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/G6_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/G6"
+                android:layout_alignTop="@+id/G6"
+                android:layout_alignLeft="@+id/G6"
+                android:layout_alignRight="@+id/G6"
+                layout="@layout/tile_dark" />
+
+            <include android:id="@+id/G6"
+                android:name = "C6"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--G7-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/G7_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/G7"
+                android:layout_alignTop="@+id/G7"
+                android:layout_alignLeft="@+id/G7"
+                android:layout_alignRight="@+id/G7"
+                layout="@layout/tile_light" />
+
+            <include android:id="@+id/G7"
+                android:name = "C7"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--G8-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/G8_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/G8"
+                android:layout_alignTop="@+id/G8"
+                android:layout_alignLeft="@+id/G8"
+                android:layout_alignRight="@+id/G8"
+                layout="@layout/tile_dark" />
+
+            <include android:id="@+id/G8"
+                android:name = "C8"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <!--ROW H EVEN ROW OF CELLS-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <!--H1-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/H1_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/H1"
+                android:layout_alignTop="@+id/H1"
+                android:layout_alignLeft="@+id/H1"
+                android:layout_alignRight="@+id/H1"
+                layout="@layout/tile_dark" />
+
+            <include android:id="@+id/H1"
+                android:name = "B1"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--H2-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/H2_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/H2"
+                android:layout_alignTop="@+id/H2"
+                android:layout_alignLeft="@+id/H2"
+                android:layout_alignRight="@+id/H2"
+                layout="@layout/tile_light" />
+
+            <include android:id="@+id/H2"
+                android:name = "B2"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--H3-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/H3_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/H3"
+                android:layout_alignTop="@+id/H3"
+                android:layout_alignLeft="@+id/H3"
+                android:layout_alignRight="@+id/H3"
+                layout="@layout/tile_dark" />
+
+            <include android:id="@+id/H3"
+                android:name = "B3"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--H4-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/H4_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/H4"
+                android:layout_alignTop="@+id/H4"
+                android:layout_alignLeft="@+id/H4"
+                android:layout_alignRight="@+id/H4"
+                layout="@layout/tile_light" />
+
+            <include android:id="@+id/H4"
+                android:name = "B4"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--H5-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/H5_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/H5"
+                android:layout_alignTop="@+id/H5"
+                android:layout_alignLeft="@+id/H5"
+                android:layout_alignRight="@+id/H5"
+                layout="@layout/tile_dark" />
+
+            <include android:id="@+id/H5"
+                android:name = "B5"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--H6-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/H6_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/H6"
+                android:layout_alignTop="@+id/H6"
+                android:layout_alignLeft="@+id/H6"
+                android:layout_alignRight="@+id/H6"
+                layout="@layout/tile_light" />
+
+            <include android:id="@+id/H6"
+                android:name = "B6"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--H7-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/H7_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/H7"
+                android:layout_alignTop="@+id/H7"
+                android:layout_alignLeft="@+id/H7"
+                android:layout_alignRight="@+id/H7"
+                layout="@layout/tile_dark" />
+
+            <include android:id="@+id/H7"
+                android:name = "B7"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+        <!--H8-->
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1">
+
+            <include android:id="@+id/H8_tile"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@+id/H8"
+                android:layout_alignTop="@+id/H8"
+                android:layout_alignLeft="@+id/H8"
+                android:layout_alignRight="@+id/H8"
+                layout="@layout/tile_light" />
+
+            <include android:id="@+id/H8"
+                android:name = "B8"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                layout="@layout/coin" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight = "1"
+    />
+
+</LinearLayout>
