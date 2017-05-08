@@ -51,8 +51,6 @@ public class MainActivity extends AppCompatActivity {
             Activity activity = mActivity.get();
             if (activity != null) {
                 ImageButton btn = (ImageButton) activity.findViewById(my_id);
-                Log.v("DEI2 :", Integer.toString(my_id));
-                Log.v("DEI3 :", btn.toString());
 
                 if(my_color==1)
                     btn.setImageResource(R.drawable.white);
@@ -118,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
 
     //FLIP A CELL
     protected void flip(View V, int color){
-        Log.e("FLIP","Inside FLIP 1");
         ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(V, "rotationY", 0f, 90f);
         objectAnimator.setDuration(100L);
         objectAnimator.start();
@@ -139,8 +136,6 @@ public class MainActivity extends AppCompatActivity {
         int len = cell.length();
         String cell_id = cell.substring(len-2, len);
         String cell_tile = cell_id + "_tile";
-
-        Log.e("ID", cell_id + ":" + cell_tile);
 
         if(clickedTile!=null) {
             if(tile_color == 0)
@@ -166,7 +161,6 @@ public class MainActivity extends AppCompatActivity {
         int y_var = cell_id.charAt(1) - 48;
 
         String cellAsString = Integer.toString(x_var)+Integer.toString(y_var);
-        Log.i("CELL", cellAsString);
 
         if(board[x_var][y_var]!=2) {
             error_toast("TEST A");
@@ -187,10 +181,9 @@ public class MainActivity extends AppCompatActivity {
                 error_toast("");
             }
             else {
-                Log.e("STEP","Black's turn");
                 occupied[user_color] += 1;
                 addValidMoves(cellAsString);
-                validMoves.remove(cellAsString);
+
                 printBoard();
 
                 Handler handler = new Handler();
@@ -220,20 +213,34 @@ public class MainActivity extends AppCompatActivity {
         int x = cellAsString.charAt(0) - 48;
         int y = cellAsString.charAt(1) - 48;
 
-        int x_t, y_t, x_it, y_it;
+        int x_t, y_t, x_it, y_it, x_2t, y_2t;
         int[] step = {-1,0,1};
 
+        //ADD CELLS ONE UNIT AWAY
         for(int i=0; i<3; i++){
             for(int j=0; j<3; j++){
                 x_t = x + step[i];
                 y_t = y + step[j];
+
                 x_it = x + -1*step[i];
                 y_it = y + -1*step[j];
 
+                x_2t = x + 2*step[i];
+                y_2t = y + 2*step[j];
+
+                //ADD CELLS IN OPPOSITE SIDE
                 if(x_t>0 && x_it>0 && x_t<9 && x_it<9 && y_t>0 && y_it>0 && y_t<9 && y_it<9){
                     if(board[x_t][y_t]!=2 && board[x_it][y_it]==2) {
                         validMoves.add(Integer.toString(x_it) + Integer.toString(y_it));
                         Log.e("ADDED TO VALIDMOVE",Integer.toString(x_it) + Integer.toString(y_it));
+                    }
+                }
+
+                //ADD CELLS TWO UNITS AWAY IN SAME SIDE
+                if(x_t>0 && x_2t>0 && x_t<9 && x_2t<9 && y_t>0 && y_2t>0 && y_t<9 && y_2t<9){
+                    if(board[x_t][y_t]!=2 && board[x_2t][y_2t]==2) {
+                        validMoves.add(Integer.toString(x_2t) + Integer.toString(y_2t));
+                        Log.e("ADDED TO VALIDMOVE",Integer.toString(x_2t) + Integer.toString(y_2t));
                     }
                 }
             }
@@ -263,14 +270,12 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-            Log.e("COUNT",s + " " + Integer.toString(num_cells));
             //UPDATE BEST COUNTS
             if(num_cells > bestFlip){
                 bestFlip = num_cells;
                 best_x = x_var;
                 best_y = y_var;
             }
-            Log.e("COUNT", Integer.toString(best_x)+Integer.toString(best_y));
         }
 
         //THIS IS THE BEST TILE
@@ -387,9 +392,10 @@ public class MainActivity extends AppCompatActivity {
                     String cell = Integer.toString(x_start) + Integer.toString(y_start);
                     addValidMoves(cell);
                     validMoves.remove(cell);
+                    Log.e("REMOVE_VALID_MOVE", cell);
 
                     while (x_t * x_incr <= x_var * x_incr && y_t * y_incr <= y_var * y_incr) {
-                        Log.e("COLOR_CHANGE", Integer.toString(x_t) + Integer.toString(y_t));
+                        //Log.e("COLOR_CHANGE", Integer.toString(x_t) + Integer.toString(y_t));
                         board[x_t][y_t] = curr_color;
                         x_t = x_t + x_incr;
                         y_t = y_t + y_incr;
@@ -455,7 +461,7 @@ public class MainActivity extends AppCompatActivity {
             sb.append(temp_x);
             sb.append(temp_y);
             current_cell = sb.toString();
-            Log.e("GOIN TO FLIP",current_cell);
+            //Log.e("GOIN TO FLIP",current_cell);
 
             int resID = getResources().getIdentifier(current_cell, "id", getPackageName());
             flip(findViewById(resID), cell_color);
