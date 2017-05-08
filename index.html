@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<title> QuickSort Demo</title>
+<head> QuickSort Demo </head>
+<style>
+	*{
+	font-family: Calibri;
+	font-size: 16px;
+	}
+	
+	.pointer{
+		display: inline-block;
+		position: fixed;
+		text-align: center;
+		font-size: 90%;
+	}
+	
+	.pointeri{
+		display: inline-block;
+		position: fixed;
+		text-align: left;
+		font-size: 90%;
+	}
+	
+	.pointerj{
+		display: inline-block;
+		position: fixed;
+		text-align: right;
+		font-size: 90%;
+	}
+	
+	.highlight{
+		border: dashed 2px;
+		background-color: #ffeda5;
+		border-color: #174231;
+		position: relative;
+		height: 30px;
+		width: 30px;
+		float: left;
+		margin-left: 10px;
+		display: inline-block;
+		text-align: center;
+		vertical-align: middle;
+	}
+	
+	.element{
+		border: solid 2px;
+		position: relative;
+		height: 30px;
+		width: 30px;
+		float: left;
+		margin-left: 10px;
+		display: inline-block;
+		text-align: center;
+		vertical-align: middle;
+	}
+	
+	.swap{
+		border: dotted 3px;
+		background-color: #FFFF66;
+		border-color: red;
+		position: relative;
+		height: 30px;
+		width: 30px;
+		float: left;
+		margin-left: 10px;
+		display: inline-block;
+		text-align: center;
+		vertical-align: middle;
+	}
+	
+	#Comments{
+		width:40%;
+		height:100px;
+		background: #eff4fc;
+	}
+	
+	.inplace{
+		background-color: #cbd1db;
+		border: solid 2px;
+		position: relative;
+		height: 30px;
+		width: 30px;
+		float: left;
+		margin-left: 10px;
+		display: inline-block;
+		text-align: center;
+		vertical-align: middle;
+	}
+	
+</style>
+	
+<html>
+<body>
+<p> Algorithm </p>
+<p> QuickSort(array A, start, end) </p>
+<ol>
+	<li> Let pivot = A[start] </li>
+	<li> Initialize i=start+1 </li>
+	<li> Initialize j=end </li>
+	<li> while(i&ltj) increment i till A[i] > pivot </li>
+	<li> while(j&gti) decrement j till A[j] < pivot </li>
+	<li> Swap A[i] and A[j]; Continue steps 4 to 6 while(i&ltj)</li>
+	<li> If i crosses j, swap pivot and A[i]. Now pivot is in its correct position in the array. 
+	<br>Elements to its left are smaller than the pivot, elements to the right are greater than the pivot </li>
+	<li> QuickSort(A, start, j-1) </li>
+	<li> QuickSort(A, j+1, end) </li>
+</ol>
+
+<div style='height: 20px'> </div>
+<input type='Button' value='Sort' onClick='mysort()'/>
+<select id='input' onchange='setA()'>
+  <option value="default">Default</option>	
+  <option value="custom">Custom</option>
+  <option value="random">Random</option>
+  <option value="ascending">Ascending</option>
+  <option value="descending">Descending</option>
+</select>
+<div style='height: 70px'> </div>
+<div style='height: 110px'>
+
+<textarea id="A0" class='element'>  </textarea>
+<textarea id="A1" class='element'>  </textarea>
+<textarea id="A2" class='element'>  </textarea>
+<textarea id="A3" class='element'>  </textarea>
+<textarea id="A4" class='element'>  </textarea>
+<textarea id="A5" class='element'>  </textarea>
+<textarea id="A6" class='element'>  </textarea>
+<textarea id="A7" class='element'>  </textarea>
+<textarea id="A8" class='element'>  </textarea>
+<textarea id="A9" class='element'>  </textarea>
+
+<div id="pivot" class='pointer'>
+	<p>&uarr;<br> 
+	p</p>
+</div> 
+
+<div id="start" class='pointer'>
+	<p>&darr;<br> 
+	start</p>
+</div> 
+
+<div id="end" class='pointer'>
+	<p>&darr;<br> 
+	end</p>
+</div> 
+
+<div id="pointeri" class='pointeri'>
+	<p>&uarr;<br> 
+	i</p>
+</div> 
+
+<div id="pointerj" class='pointerj'>
+	<p>&uarr;<br> 
+	j</p>
+</div> 	
+</div>
+
+<div id="Comments"> Comments </div>
+</body>
+</html>
+
+<script type="text/javascript">
+	var A = [30,10,6,45,15,20,54,2,99,80];
+	
+	var id=0;
+	while(id<10){
+		var t = 'A'+id;
+		document.getElementById(t).value = A[id];
+		id++;
+	}
+		
+	var pivot=0, start=0, end=9;
+	var i=start+1, j=end;
+	var counter=10;
+	var stack = [];
+	var text = document.getElementById('Comments');
+	
+	//MASTER WIDTH FOR ALL ELEMENTS
+	var test = document.getElementById('A0').getBoundingClientRect();	
+	var width = test.right-test.left;
+	
+	function attachPivot(pivot){
+		if(pivot<0 || pivot>9){
+			return;
+		}
+		var id= 'A'+ pivot;
+		var rect = document.getElementById(id).getBoundingClientRect();	
+		var width = rect.right-rect.left;
+		
+		var pivot_div = document.getElementById('pivot');	
+		pivot_div.style.left = Math.round(rect.left)+'px';
+		pivot_div.style.top = Math.round(rect.bottom)+'px';
+		pivot_div.style.bottom = Math.round(rect.bottom) + pivot_div.clientHeight + 'px';
+		pivot_div.style.width = width+'px';
+	}
+	
+	//START
+	function attachStart(start){
+		if(start<0 || start>9){
+			return;
+		}
+		
+		var id= 'A'+ start;
+		var rect = document.getElementById(id).getBoundingClientRect();
+		console.log("LEFT: "+rect.left+" RIGHT: "+rect.right+" TOP: "+rect.top+" BOTTOM: "+rect.bottom);
+		var start = document.getElementById('start');	
+		var height = start.clientHeight;
+		start.style.left = rect.left+'px';
+		start.style.top = rect.top-height+'px';
+		start.style.width = width+'px';
+	}
+	
+	//END
+	function attachEnd(end){
+		if(end<0 || end>9){
+			return;
+		}
+		var id= 'A'+ end;
+		var rect = document.getElementById(id).getBoundingClientRect();
+		var end = document.getElementById('end');	
+		var height = end.clientHeight;
+		end.style.left = rect.left+'px';
+		end.style.top = rect.top-height+'px';
+		end.style.width = width+'px';
+	}
+		
+	//I
+	function attachI(i){
+		if(i<0 || i>9){
+			return;
+		}
+		var id= 'A'+ i;
+		var rect = document.getElementById(id).getBoundingClientRect();		
+		var pointI = document.getElementById('pointeri');
+		pointI.style.left = rect.left+'px';
+		pointI.style.top = rect.bottom+'px';
+		pointI.style.width = width+'px';
+		document.getElementById(id).className = 'highlight';
+	}
+	
+	//J
+	function attachJ(j){
+		if(j<0 || j>9){
+			return;
+		}
+		var id= 'A'+ j;
+		var rect = document.getElementById(id).getBoundingClientRect();		
+		var pointI = document.getElementById('pointerj');
+		pointI.style.left = rect.left+'px';
+		pointI.style.top = rect.bottom+'px';
+		pointI.style.width = width+'px';
+		document.getElementById(id).className = 'highlight';
+	}
+	
+	function sort(str){
+		var res = str.split(':');
+		start = parseInt(res[0]);
+		end = parseInt(res[1]);
+		console.log("SORT: "+start+":"+end);
+		text.innerHTML = 'Sorting A['+start+'] to A['+end+'] .Pivot is '+A[start];
+		
+		if(start>end){
+			return;
+		}
+		else if(start===end){
+			
+			document.getElementById('A'+start).className += ' inplace';
+			text.innerHTML = 'Sorting A[' + start + '] to A[' + start + ']! ' + A[start] + ' is inplace';
+			
+			setTimeout(function(){	
+				if(stack.length>0){
+					sort(stack.pop());
+				}
+				else{
+					console.log('Returning due to sort');
+					text.innerHTML = 'Array Sorted!';
+					disappear();
+				}
+			}, 3000);
+			
+			return;
+		}
+		
+		pivot = start;
+		i = start+1;
+		j=end;
+		
+		attachPivot(pivot);
+		attachStart(start);
+		attachEnd(end);
+		attachI(i);
+		attachJ(j);
+		
+		iterate_i();
+	}	
+	
+	function iterate_i(){
+		
+		console.log('i: '+i);
+		if(i>9){
+			return;
+		}
+		setTimeout(function(){		
+			if(i==j){
+				text.innerHTML='i crosses j';
+				iterate_j();
+			}
+			else if(A[i]>A[pivot]){
+				console.log('Found: '+A[i]+' : '+A[pivot]);
+				text.innerHTML='Found A[i] greater than '+ A[pivot];
+				iterate_j();
+			}
+			else{
+				text.innerHTML='Scanning to find A[i] greater than '+A[pivot];
+				detach(i);
+				i++;
+				attachI(i);
+				iterate_i();	
+			}
+		},2000);	
+	}
+	
+	function iterate_j(){
+		if(A[j]<A[pivot]){
+			if(i>=j){
+				setTimeout(function(){
+					text.innerHTML='A[j] < '+ A[pivot] + ' . Also j has crossed i. So, swapping pivot with A[j]';
+					swap(pivot, j);
+				}, 2000);
+				
+				setTimeout(function(){
+					text.innerHTML= A[j]+' is now in its correct place';
+					document.getElementById('A'+j).className += ' inplace';
+					var s=start;
+					var e=end;
+					var lj=j-1;
+					var gj=j+1;
+				
+					if(gj>e){}
+					else{ stack.push(gj+":"+e) };
+					if(s>lj){}
+					else{ stack.push(s+":"+lj) };
+					
+					setTimeout(
+						function(){
+							if(stack.length>0){
+								sort(stack.pop());
+							}
+							else{
+								console.log('End of sort!');
+								disappear();
+								return
+							}
+						}, 3000);
+					
+				}, 7000);
+			}
+			else{
+				setTimeout(function(){
+					text.innerHTML = 'A[i] > A[j]. So, swapping A[i] and A[j]';
+					swap(i, j);
+				}, 2000);
+				setTimeout(function(){iterate_i();}, 7000);
+				console.log('Returning for no reason');
+				return;
+			}
+		}
+		else{		
+			setTimeout(
+			function(){
+				detach(j);
+				j--;
+				if(j>start){
+					text.innerHTML='Scanning to find A[j] smaller than '+A[pivot];
+					attachJ(j);
+					iterate_j();		
+				}
+				else if(j==start){
+					attachJ(j);					
+					stack.push((j+1)+":"+end);
+					
+					setTimeout(function(){
+						text.innerHTML = 'j has crossed i and is same as pivot. '+A[pivot]+' is now inplace';
+						document.getElementById('A'+j).className += ' inplace';
+						console.log('Returning due to j');
+					}, 2000);
+					
+					setTimeout(function(){
+						sort(stack.pop());
+					}, 6000);
+					
+					return;
+				}
+			}, 2000);
+		}
+	}
+	
+	function disappear(){
+		var d=0;
+		while(d<10){
+			var t = 'A'+d;
+			A[d] = parseInt(document.getElementById(t).value);
+			document.getElementById(t).className='inplace';
+			d++;
+		}	
+	
+		document.getElementById('start').style.visibility='hidden';
+		document.getElementById('end').style.visibility='hidden';	
+		document.getElementById('pointeri').style.visibility='hidden';	
+		document.getElementById('pointerj').style.visibility='hidden';	
+		document.getElementById('pivot').style.visibility='hidden';	
+	}
+	
+	function swap(one, two){
+		var t = A[two];
+		A[two] = A[one];
+		A[one] = t;
+		
+		setTimeout(function() {
+			document.getElementById('A'+one).className = 'swap';
+			document.getElementById('A'+two).className = 'swap';
+		
+			setTimeout(function() {
+				document.getElementById('A'+one).value=A[one];
+				document.getElementById('A'+two).value=A[two];
+			}, 2000);
+			
+			setTimeout(function() {
+				document.getElementById('A'+one).className = 'element';
+				document.getElementById('A'+two).className = 'element';
+			}, 3000);
+		}, 1000);
+	}
+	
+	function detach(i){
+		if(i<0 || i>9){
+			return;
+		}
+		var id='A'+i;
+		document.getElementById(id).className = 'element';
+	}
+	
+	function attach(pivot, start, end, i, j){
+		attachPivot(start);
+		attachStart(start);
+		attachEnd(end);
+		attachI(i);
+		attachJ(j);
+	}
+	
+	function mysort(){
+		var d=0;
+		while(d<10){
+			var t = 'A'+d;
+			A[d] = parseInt(document.getElementById(t).value);
+			document.getElementById(t).className='element';
+			//console.log(A[d]);
+			d++;
+		}
+
+		document.getElementById('start').style.visibility='visible';
+		document.getElementById('end').style.visibility='visible';	
+		document.getElementById('pointeri').style.visibility='visible';	
+		document.getElementById('pointerj').style.visibility='visible';	
+		document.getElementById('pivot').style.visibility='visible';
+		
+		var t="0:9";
+		sort(t);
+	}
+	
+	function setA(){
+		var x = document.getElementById('input').value;
+		if(x=='default'){
+			A=[30,10,6,45,15,20,54,2,99,80];
+		}
+		if(x=='custom'){
+			A=[0,0,0,0,0,0,0,0,0,0];
+		}
+		if(x=='ascending'){
+			A=[1,2,3,4,5,6,7,8,9,10];
+		}
+		if(x=='descending'){
+			A=[10,9,8,7,6,5,4,3,2,1];
+		}
+		if(x=='random'){
+			var k=0;
+			while(k<10){
+				A[k] = Math.round(Math.random()*100);
+				k++;
+			}	
+		}
+		
+		var id=0;
+		while(id<10){
+			var t = 'A'+id;
+			document.getElementById(t).value = A[id];
+			id++;
+		}		
+	}
+	
+	function resize(){
+		console.log('Triggered');
+		attach(pivot, start, end, i,j);
+	}
+	
+	attach(0, 0, 9, 1, 9);
+	window.addEventListener("resize", function(){attach(pivot, start, end, i,j)}, false);	
+	window.addEventListener("scroll", function(){attach(pivot, start, end, i,j)}, true);
+	attachI(1);
+</script>
