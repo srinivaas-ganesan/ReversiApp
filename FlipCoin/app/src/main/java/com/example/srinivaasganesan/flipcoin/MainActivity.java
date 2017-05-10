@@ -18,22 +18,30 @@ public class MainActivity extends AppCompatActivity {
     private static class MyHandler extends Handler {}
     private final MyHandler mHandler = new MyHandler();
     private MyRunnable mRunnable;
-    private int color = 0;
-    private View clickedTile = null;
-    private View compTile = null;
 
-    private int tile_color = 0;
-    private int tile2_color = 0;
-    private int[] occupied = {2,2};
-
-    private final int user_color = 1; //User is white
-    private final int comp_color = 1 - user_color;
-
-    private boolean valid_click;
-    private boolean user_turn = true;
-
+    //MAIN VARIABLES
     private int[][] board = new int[9][9];
     private HashSet<String> validMoves = new HashSet<String>();
+    private View userTile = null;
+    private View compTile = null;
+    private int userTileColor = 0;
+    private int compTileColor = 0;
+
+    //VARIABLES FOR PREV STATE - FOR UNDO
+    private int[][] previousBoard = new int[9][9];
+    private HashSet<String> previousMove = new HashSet<String>();
+    private View prevUserTile = null;
+    private View prevCompTile = null;
+    private int prevUserTileColor = 0;
+    private int prevCompTileColor = 0;
+
+    private int[] occupied = {2,2};
+    private final int user_color = 1; //User is white
+    private final int comp_color = 1 - user_color;
+    private boolean valid_click;
+    private boolean user_turn = true;
+    private boolean canUndo = false;
+    private boolean oneUndo = false;
 
     public static class MyRunnable implements Runnable {
         private final WeakReference<Activity> mActivity;
@@ -131,30 +139,39 @@ public class MainActivity extends AppCompatActivity {
             return;
 
         user_turn = false; //Block further clicks
+
+        //SAVE THE STATES
+        saveState();
+        canUndo = true;
+        oneUndo = true;
+
         //Return previously clicked cell to original state
         String cell = V.getResources().getResourceName(V.getId());
         int len = cell.length();
         String cell_id = cell.substring(len-2, len);
         String cell_tile = cell_id + "_tile";
 
-        if(clickedTile!=null) {
-            if(tile_color == 0)
-                clickedTile.setBackgroundResource(R.drawable.dark);
+        if(userTile!=null) {
+            if(userTileColor == 0)
+                userTile.setBackgroundResource(R.drawable.dark);
             else
-                clickedTile.setBackgroundResource(R.drawable.light);
-            clickedTile.setAlpha(0.8f);
+                userTile.setBackgroundResource(R.drawable.light);
+            userTile.setAlpha(0.8f);
+
+            prevUserTile = userTile;
+            prevUserTileColor = userTileColor;
         }
 
         //Set current cell to clicked state
         int tile_id = getResources().getIdentifier(cell_tile, "id", getPackageName());
-        clickedTile = findViewById(tile_id);
-        tile_color = getCellColor(cell_id);
+        userTile = findViewById(tile_id);
+        userTileColor = getCellColor(cell_id);
 
-        clickedTile.setAlpha(1f);
-        if(tile_color == 0)
-            clickedTile.setBackgroundResource(R.drawable.dark_border);
+        userTile.setAlpha(1f);
+        if(userTileColor == 0)
+            userTile.setBackgroundResource(R.drawable.dark_border);
         else
-            clickedTile.setBackgroundResource(R.drawable.light_border);
+            userTile.setBackgroundResource(R.drawable.light_border);
 
         //Check if click is valid
         int x_var = cell_id.charAt(0) - 64;
@@ -197,6 +214,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //PRINT THE BOARD TO LOG
     private void printBoard(){
         StringBuilder sb = new StringBuilder();
         for(int i=1; i<9; i++){
@@ -311,7 +329,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //Highlight Computer's selected Cell
+    //HIGHLIGHT COMPUTER'S SELECTED CELL
     private void setCompTile(int x, int y){
         char row = (char) (x + 64);
         char col = (char) (y + 48);
@@ -323,20 +341,23 @@ public class MainActivity extends AppCompatActivity {
         String cell_tile = sb.append("_tile").toString();
 
         if(compTile!=null) {
-            if(tile2_color == 0)
+            if(compTileColor == 0)
                 compTile.setBackgroundResource(R.drawable.dark);
             else
                 compTile.setBackgroundResource(R.drawable.light);
             compTile.setAlpha(0.8f);
+
+            prevCompTile = compTile;
+            prevCompTileColor = compTileColor;
         }
 
-        //Set current cell to clicked state
+        //SET CURRENT CELL TO CLICKED STATE
         int tile_id = getResources().getIdentifier(cell_tile, "id", getPackageName());
         compTile = findViewById(tile_id);
-        tile2_color = getCellColor(cell);
+        compTileColor = getCellColor(cell);
 
         compTile.setAlpha(1f);
-        if(tile2_color == 0)
+        if(compTileColor == 0)
             compTile.setBackgroundResource(R.drawable.dark_tile);
         else
             compTile.setBackgroundResource(R.drawable.light_tile);
@@ -469,6 +490,109 @@ public class MainActivity extends AppCompatActivity {
             x_t = x_t + x_incr;
             y_t = y_t + y_incr;
         }
+    }
+
+    protected void undo(View V){
+        if(!canUndo){
+            Toast.makeText(this, "No moves to Undo", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(!oneUndo){
+            Toast.makeText(this, "Only one Undo", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        oneUndo = false;
+
+        boolean state = user_turn;
+        user_turn = false;
+
+        if (userTile != null) {
+            if (userTileColor == 0)
+                userTile.setBackgroundResource(R.drawable.dark);
+            else
+                userTile.setBackgroundResource(R.drawable.light);
+            userTile.setAlpha(0.8f);
+        }
+        else
+            Log.e("HERE","User tile is null");
+
+
+        if (compTile != null) {
+            if (compTileColor == 0)
+                compTile.setBackgroundResource(R.drawable.dark);
+            else
+                compTile.setBackgroundResource(R.drawable.light);
+            compTile.setAlpha(0.8f);
+        }
+
+        userTile = prevUserTile;
+        userTileColor = prevUserTileColor;
+
+        //SET CURRENT CELL TO PREVIOUS CELL
+        if(userTile != null) {
+            userTile.setAlpha(1f);
+            if (userTileColor == 0)
+                userTile.setBackgroundResource(R.drawable.dark_border);
+            else
+                userTile.setBackgroundResource(R.drawable.light_border);
+        }
+
+        compTile = prevCompTile;
+        compTileColor = prevCompTileColor;
+        if(compTile != null) {
+            compTile.setAlpha(1f);
+            if (compTileColor == 0)
+                compTile.setBackgroundResource(R.drawable.dark_tile);
+            else
+                compTile.setBackgroundResource(R.drawable.light_tile);
+        }
+
+        setBoard(previousBoard);
+        setValidMoves(previousMove);
+        user_turn = state;
+    }
+
+    //SET THE BOARD TO PREVIOUS STATE
+    private void setBoard(int[][] tBoard){
+        Log.e("SETBOARD","HERE");
+
+        StringBuilder sb;
+        String cell;
+        ImageButton btn;
+
+        for(int i=1; i<9; i++){
+            for(int j=1; j<9; j++){
+                board[i][j] = tBoard[i][j];
+                sb = new StringBuilder();
+                sb.append((char) (i+64));
+                sb.append((char) (j+48));
+                cell = sb.toString();
+
+                int resID = getResources().getIdentifier(cell, "id", getPackageName());
+                btn = (ImageButton) findViewById(resID);
+                btn.setImageResource(android.R.color.transparent);
+
+                if(tBoard[i][j] == 0)
+                    btn.setImageResource(R.drawable.black);
+                else if(tBoard[i][j] == 1)
+                    btn.setImageResource(R.drawable.white);
+            }
+        }
+    }
+
+    private void setValidMoves(HashSet<String> moves){
+        validMoves = moves;
+    }
+
+    //SAVE THE STATE OF BOARD AND VALID MOVES
+    private void saveState(){
+        for(int i=1; i<9; i++)
+            for(int j=1; j<9; j++)
+                previousBoard[i][j] = board[i][j];
+
+        previousMove = new HashSet<String>();
+        previousMove.addAll(validMoves);
     }
 
     //GET COLOR OF TILE BASED ON PARITY

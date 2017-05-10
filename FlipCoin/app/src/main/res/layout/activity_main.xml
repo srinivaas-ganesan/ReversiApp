@@ -1499,10 +1499,29 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:orientation = "horizontal"
         android:layout_weight = "1"
-    />
+        android:paddingTop="5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/score"
+        />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/undo"
+            android:src = "@drawable/undo"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            android:onClick="undo"
+            android:padding="1dp"
+        />
+    </RelativeLayout>
 
 </LinearLayout>
