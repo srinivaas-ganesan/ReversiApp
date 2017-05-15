@@ -6,12 +6,16 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 import java.lang.ref.WeakReference;
 import java.util.HashSet;
+import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,14 +39,13 @@ public class MainActivity extends AppCompatActivity {
     private int prevUserTileColor = 0;
     private int prevCompTileColor = 0;
 
-    private int[] occupied = {2,2};
+    private int[] occupied = {2,2,60};
     private final int user_color = 1; //User is white
     private final int comp_color = 1 - user_color;
     private boolean valid_click;
     private boolean user_turn = true;
-    private boolean canUndo = false;
-    private boolean oneUndo = false;
 
+    private ImageButton undoBtn;
     public static class MyRunnable implements Runnable {
         private final WeakReference<Activity> mActivity;
         private final int my_id;
@@ -87,14 +90,18 @@ public class MainActivity extends AppCompatActivity {
         btn.setImageResource(R.drawable.black);
 
         ImageView temp;
-        temp = (ImageView) findViewById(R.id.D4);
+        temp = (ImageView) findViewById(R.id.D4_tile);
         temp.setClickable(false);
-        temp = (ImageView) findViewById(R.id.D5);
+        temp = (ImageView) findViewById(R.id.D5_tile);
         temp.setClickable(false);
-        temp = (ImageView) findViewById(R.id.E4);
+        temp = (ImageView) findViewById(R.id.E4_tile);
         temp.setClickable(false);
-        temp = (ImageView) findViewById(R.id.E5);
+        temp = (ImageView) findViewById(R.id.E5_tile);
         temp.setClickable(false);
+
+        undoBtn = (ImageButton) findViewById(R.id.undo);
+        undoBtn.setClickable(false);
+        undoBtn.setAlpha(0.5f);
 
         //init Board values
         for(int i=1; i<9; i++)
@@ -135,15 +142,15 @@ public class MainActivity extends AppCompatActivity {
     //CLICK ON A CELL TO CHECK
     protected void checkValid(View V){
 
+        undoBtn.setClickable(false);
+        undoBtn.setAlpha(0.5f);
+
         if(user_turn == false)
             return;
-
         user_turn = false; //Block further clicks
 
         //SAVE THE STATES
         saveState();
-        canUndo = true;
-        oneUndo = true;
 
         //Return previously clicked cell to original state
         String cell = V.getResources().getResourceName(V.getId());
@@ -158,8 +165,10 @@ public class MainActivity extends AppCompatActivity {
                 userTile.setBackgroundResource(R.drawable.light);
             userTile.setAlpha(0.8f);
 
-            prevUserTile = userTile;
-            prevUserTileColor = userTileColor;
+            if(valid_click) {
+                prevUserTile = userTile;
+                prevUserTileColor = userTileColor;
+            }
         }
 
         //Set current cell to clicked state
@@ -180,8 +189,11 @@ public class MainActivity extends AppCompatActivity {
         String cellAsString = Integer.toString(x_var)+Integer.toString(y_var);
 
         if(board[x_var][y_var]!=2) {
-            error_toast("TEST A");
+            error_toast("Occupied Cell!");
             user_turn = true;
+
+            undoBtn.setClickable(true);
+            undoBtn.setAlpha(1f);
         }
         else{
             valid_click = false;
@@ -195,21 +207,21 @@ public class MainActivity extends AppCompatActivity {
 
             if(valid_click == false) {
                 user_turn = true;
+
+                undoBtn.setClickable(true);
+                undoBtn.setAlpha(1f);
                 error_toast("");
             }
             else {
                 occupied[user_color] += 1;
                 addValidMoves(cellAsString);
-
-                printBoard();
-
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        computerMove();
+                        newComputerMove();
                     }
-                }, 2000);
+                }, 750);
             }
         }
     }
@@ -221,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
             for(int j=1; j<9; j++){
                 sb.append(Integer.toString(board[i][j])+" ");
             }
-            Log.e("BOARD",sb.toString());
+            //Log.e("BOARD",sb.toString());
             sb = new StringBuilder();
         }
     }
@@ -250,7 +262,7 @@ public class MainActivity extends AppCompatActivity {
                 if(x_t>0 && x_it>0 && x_t<9 && x_it<9 && y_t>0 && y_it>0 && y_t<9 && y_it<9){
                     if(board[x_t][y_t]!=2 && board[x_it][y_it]==2) {
                         validMoves.add(Integer.toString(x_it) + Integer.toString(y_it));
-                        Log.e("ADDED TO VALIDMOVE",Integer.toString(x_it) + Integer.toString(y_it));
+                        //Log.e("ADDED TO VALIDMOVE",Integer.toString(x_it) + Integer.toString(y_it));
                     }
                 }
 
@@ -258,60 +270,61 @@ public class MainActivity extends AppCompatActivity {
                 if(x_t>0 && x_2t>0 && x_t<9 && x_2t<9 && y_t>0 && y_2t>0 && y_t<9 && y_2t<9){
                     if(board[x_t][y_t]!=2 && board[x_2t][y_2t]==2) {
                         validMoves.add(Integer.toString(x_2t) + Integer.toString(y_2t));
-                        Log.e("ADDED TO VALIDMOVE",Integer.toString(x_2t) + Integer.toString(y_2t));
+                        //Log.e("ADDED TO VALIDMOVE",Integer.toString(x_2t) + Integer.toString(y_2t));
                     }
                 }
             }
         }
     }
 
-    protected void computerMove(){
-        int x_var, y_var;
-        Log.e("STEP","In Comp Move");
+    //NEW COMP MOVE
+    protected void newComputerMove(){
+        Log.e("STEP","In NewComp Move");
 
-        int num_cells = 0;
         int[] x_val = {-1, 0, 1};
         int[] y_val = {-1, 0, 1};
         valid_click = false;
 
-        int best_x = 1, best_y = 1, bestFlip = 0;
+        GameBoard gb = new GameBoard(board, validMoves, 0);
+        duplex db = gb.getBest(2);
+        String cell;
 
-        //CHECK ALL MOVES FOR COMP
-        for (String s : validMoves) {
-            num_cells = 0;
-            x_var = s.charAt(0) - 48;
-            y_var = s.charAt(1) - 48;
-
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
-                    num_cells += check_range(x_var, y_var, x_val[i], y_val[j], comp_color, false);
-                }
-            }
-
-            //UPDATE BEST COUNTS
-            if(num_cells > bestFlip){
-                bestFlip = num_cells;
-                best_x = x_var;
-                best_y = y_var;
-            }
-        }
+        if(db!=null)
+            cell = db.tile;
+        else
+            cell = null;
 
         //THIS IS THE BEST TILE
-        if (bestFlip > 0) {
-            setCompTile(best_x, best_y);
+        if (cell != null) {
+            Log.e("BEST_TILE", cell);
+            int best_x = cell.charAt(0) - 48;
+            int best_y = cell.charAt(1) - 48;
 
+            setCompTile(best_x, best_y);
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++)
                     check_range(best_x, best_y, x_val[i], y_val[j], comp_color, true);
-
             occupied[comp_color] += 1;
+
+            //CHECK IF USER HAS MOVE
+            boolean userHasMove = userHasMoves(1);
+            if(userHasMove == true)
+                user_turn = true;
+            else if(userHasMove == false) {
+                Toast.makeText(this, "User has no moves, Comp gets another chance!", Toast.LENGTH_SHORT).show();
+                //INIT ANOTHER COMP MOVE
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        newComputerMove();
+                    }
+                }, 750);
+            }
         }
-
-        Log.e("OCCUPIED", Integer.toString(occupied[0]) + " " + Integer.toString(occupied[1]));
-        boolean userHasMove = userHasMoves(1);
-        boolean compHasMove = (bestFlip>0);
-
-        if(compHasMove == false){
+        else{
+            //COMPUTER HAS NO MOVES
+            boolean userHasMove = userHasMoves(1);
             if(userHasMove == false)
                 checkWin();
             else {
@@ -319,14 +332,10 @@ public class MainActivity extends AppCompatActivity {
                 user_turn = true;
             }
         }
-        else{
-            if(userHasMove == true)
-                user_turn = true;
-            else if(userHasMove == false){
-                Toast.makeText(this, "User has no moves, Comp gets another chance!", Toast.LENGTH_SHORT).show();
-                computerMove();
-            }
-        }
+
+        undoBtn.setClickable(true);
+        undoBtn.setAlpha(1f);
+        user_turn = true;
     }
 
     //HIGHLIGHT COMPUTER'S SELECTED CELL
@@ -493,19 +502,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void undo(View V){
-        if(!canUndo){
-            Toast.makeText(this, "No moves to Undo", Toast.LENGTH_SHORT).show();
-            return;
-        }
 
-        if(!oneUndo){
-            Toast.makeText(this, "Only one Undo", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        oneUndo = false;
-
-        boolean state = user_turn;
-        user_turn = false;
+        undoBtn.setClickable(false);
+        undoBtn.setAlpha(0.5f);
 
         if (userTile != null) {
             if (userTileColor == 0)
@@ -514,9 +513,6 @@ public class MainActivity extends AppCompatActivity {
                 userTile.setBackgroundResource(R.drawable.light);
             userTile.setAlpha(0.8f);
         }
-        else
-            Log.e("HERE","User tile is null");
-
 
         if (compTile != null) {
             if (compTileColor == 0)
@@ -550,7 +546,6 @@ public class MainActivity extends AppCompatActivity {
 
         setBoard(previousBoard);
         setValidMoves(previousMove);
-        user_turn = state;
     }
 
     //SET THE BOARD TO PREVIOUS STATE
@@ -560,6 +555,9 @@ public class MainActivity extends AppCompatActivity {
         StringBuilder sb;
         String cell;
         ImageButton btn;
+        occupied[0] = 0;
+        occupied[1] = 0;
+        occupied[2] = 0;
 
         for(int i=1; i<9; i++){
             for(int j=1; j<9; j++){
@@ -577,6 +575,8 @@ public class MainActivity extends AppCompatActivity {
                     btn.setImageResource(R.drawable.black);
                 else if(tBoard[i][j] == 1)
                     btn.setImageResource(R.drawable.white);
+
+                occupied[tBoard[i][j]] += 1;
             }
         }
     }
@@ -601,5 +601,12 @@ public class MainActivity extends AppCompatActivity {
             return 1;
         else
             return 0;
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if(user_turn)
+            return super.dispatchTouchEvent(ev);
+        return true;
     }
 }
